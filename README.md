@@ -59,6 +59,7 @@ PRODUCT_PATTERNS = [
 - Enter a **supported domain** from the list
 - View product URLs directly in the browser
 
+![Screenshot 2025-05-10 123855](https://github.com/user-attachments/assets/68dc392d-5cc6-47e9-87ae-27aa9831c01d)
 ---
 
 ## 🛠️ Project Structure
