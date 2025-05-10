@@ -1,29 +1,30 @@
 # 🕷️ E-Commerce Product URL Crawler
 
-This project implements a **scalable**, **robust**, and **asynchronous web crawler** built using **Python** and **Playwright**. The primary goal is to discover and extract all valid **product URLs** from major e-commerce platforms.
+This project implements a **scalable**, **robust**, and **asynchronous web crawler** built using **Python**, **Playwright**, and a **Streamlit UI**. The goal is to efficiently discover and extract all valid **product URLs** from leading fashion e-commerce platforms.
 
 ---
 
 ## 📦 Features
 
-- ✅ Intelligent product URL detection using multiple regex patterns.
-- 🚀 Asynchronous crawling with Playwright for high performance.
-- 🔁 Auto-scroll and deep-link navigation for lazy-loaded content.
-- 🧱 Robust handling of diverse site structures and edge cases.
-- 📤 Outputs clean, unique, and structured product URLs in `.txt` and `.json`.
+- ✅ Intelligent product URL detection using multiple regex patterns
+- 🚀 Asynchronous crawling with Playwright for high performance
+- 🔁 Auto-scroll and deep-link navigation for lazy-loaded content
+- 🧱 Robust error handling and domain-specific crawling strategies
+- 🖥️ Interactive **Streamlit Web UI** to crawl by entering supported domain URLs
+- 📤 Outputs clean, unique, and structured product URLs in both `.txt` and `.json` format
 
 ---
 
 ## 🛍️ Supported Domains
 
-The crawler currently supports (but is not limited to):
+This version supports the following:
 
 - [Virgio](https://www.virgio.com/)
 - [TataCliq](https://www.tatacliq.com/)
 - [Nykaa Fashion](https://www.nykaafashion.com/)
 - [Westside](https://www.westside.com/)
 
-More domains can be easily added by extending the `DOMAINS` list and/or updating regex patterns.
+⚠️ *Crawler is domain-specific. Only enter one of the above domains in the UI to crawl product URLs.*
 
 ---
 
@@ -31,7 +32,7 @@ More domains can be easily added by extending the `DOMAINS` list and/or updating
 
 ### 1️⃣ URL Discovery Strategy
 
-Each domain has different structures for product URLs. We use multiple **regular expressions** to detect product pages accurately:
+Each domain uses unique patterns for product pages. The crawler applies multiple **regular expressions** to detect and validate URLs:
 
 ```python
 PRODUCT_PATTERNS = [
@@ -41,3 +42,57 @@ PRODUCT_PATTERNS = [
   re.compile(r"/collections/.*/products/[a-zA-Z0-9\-]+$"),      # Shopify variants
   re.compile(r"/products/[a-zA-Z0-9\-]+-[0-9]+$"),              # Additional formats
 ]
+```
+
+### 2️⃣ Crawling Strategy
+
+- Starts at homepage of the domain
+- Scrolls multiple times to trigger lazy-loaded products
+- Follows up to 3 internal deep-links based on `href` patterns
+- Extracts and filters all valid product URLs
+
+---
+
+## 🖥️ Streamlit UI
+
+- Users can launch `streamlit_app.py`
+- Enter a **supported domain** from the list
+- View product URLs directly in the browser
+
+---
+
+## 🛠️ Project Structure
+
+```bash
+📁 ecommerce-crawler
+├── crawler_playwright.py        # Core async crawler logic
+├── streamlit_app.py             # Frontend UI using Streamlit
+├── product_urls_output.txt      # Output in plain text format
+├── product_urls_output.json     # Output in JSON format
+└── requirements.txt             # Python dependencies
+```
+
+---
+
+## 🌱 Future Scalability
+
+- 🔌 Add support for more e-commerce platforms via regex & scroll-depth tuning
+- 🌐 Deploy UI and backend to cloud (Render, EC2, Docker, etc.)
+- 📈 Performance tuning using concurrency & page prefetching
+- 📊 Real-time dashboard with crawl stats & URL classification
+- 🧪 Automated testing & health-checks for each domain crawl
+
+---
+
+## 📎 How to Run
+
+```bash
+# Backend Only
+python crawler_playwright.py
+
+# Streamlit UI
+streamlit run streamlit_app.py
+```
+
+---
+
