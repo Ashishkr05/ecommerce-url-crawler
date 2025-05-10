@@ -1,2 +1,2 @@
 #!/bin/bash
-playwright install
+python -m playwright install
