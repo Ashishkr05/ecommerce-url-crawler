@@ -97,3 +97,8 @@ streamlit run streamlit_app.py
 
 ---
 
+## 🚫 Deployment Limitation
+
+> **Note:** Due to the use of **Playwright**, free-tier hosting platforms (like Render, Vercel, etc.) do not support headless browser environments without paid plans.  
+> To preserve **performance optimization** and **future scalability**, we’ve chosen not to compromise by switching to a lighter alternative.  
+> As a result, the current version is not deployed online and needs to be run locally.
